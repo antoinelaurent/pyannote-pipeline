@@ -235,7 +235,9 @@ class Experiment:
         #)
         #self.pipeline_ = Klass(**self.config_["pipeline"].get("params", {}))
 
+        print(f"Loading from pretrained: {experiment_dir}")
         self.pipeline_  = Pipeline.from_pretrained(experiment_dir)
+        print("done.")
 
         # freeze parameters
         if "freeze" in self.config_:
