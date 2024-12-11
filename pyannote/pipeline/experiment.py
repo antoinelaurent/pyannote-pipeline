@@ -128,6 +128,8 @@ import itertools
 from tqdm import tqdm
 from datetime import datetime
 
+from pyannote.audio import Pipeline
+
 from pyannote.database import FileFinder
 from pyannote.database import registry
 from pyannote.database import get_annotated
@@ -225,11 +227,15 @@ class Experiment:
         self.filters_ = all_filters
 
         # initialize pipeline
-        pipeline_name = self.config_["pipeline"]["name"]
-        Klass = get_class_by_name(
-            pipeline_name, default_module_name="pyannote.pipeline.blocks"
-        )
-        self.pipeline_ = Klass(**self.config_["pipeline"].get("params", {}))
+
+
+        #pipeline_name = self.config_["pipeline"]["name"]
+        #Klass = get_class_by_name(
+        #    pipeline_name, default_module_name="pyannote.pipeline.blocks"
+        #)
+        #self.pipeline_ = Klass(**self.config_["pipeline"].get("params", {}))
+
+        self.pipeline_  = Pipeline.from_pretrained(experiment_dir)
 
         # freeze parameters
         if "freeze" in self.config_:
