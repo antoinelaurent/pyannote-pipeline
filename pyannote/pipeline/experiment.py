@@ -240,9 +240,9 @@ class Experiment:
         print("done.")
 
         # freeze parameters
-        if "freeze" in self.config_:
-            params = self.config_["freeze"]
-            self.pipeline_.freeze(params)
+        #if "freeze" in self.config_:
+        #    params = self.config_["freeze"]
+        #    self.pipeline_.freeze(params)
 
         # send to device
         if "device" in self.config_:
