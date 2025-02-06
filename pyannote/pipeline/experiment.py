@@ -246,9 +246,9 @@ class Experiment:
 
         # send to device
         if "device" in self.config_:
-            import torch
+            from pyannote.audio.__main__ import parse_device
+            device = parse_device(self.config_["device"])
 
-            device = torch.device(self.config_["device"])
             self.pipeline_.to(device)
 
     def train(
